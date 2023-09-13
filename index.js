@@ -33,12 +33,15 @@ app.post("/api/login", (req, res) => {
     email: "user1@email.com",
   };
 
-  jwt.sign({ user }, "secret", (err, token) => {
+  jwt.sign({ user }, "secret", { expiresIn: "30s" }, (err, token) => {
     res.json({
       token,
     });
   });
 });
+
+// Token
+// Bearer <token>
 
 // Verify Token function middleware
 function verifyToken(req, res, next) {
