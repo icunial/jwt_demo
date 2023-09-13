@@ -18,6 +18,21 @@ app.post("/api/posts", (req, res) => {
   });
 });
 
+app.post("/api/login", (req, res) => {
+  // Mock user
+  const user = {
+    id: 1,
+    username: "User 1",
+    email: "user1@email.com",
+  };
+
+  jwt.sign({ user }, "secret", (err, token) => {
+    res.json({
+      token,
+    });
+  });
+});
+
 // Initialized Server
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
