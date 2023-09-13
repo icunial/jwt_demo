@@ -39,6 +39,13 @@ function verifyToken(req, res, next) {
   const bearerHeader = req.headers["authorization"];
   // Check if bearer is undefined
   if (typeof bearerHeader !== "undefined") {
+    // Split at the space
+    const token = bearerHeader.split(" ")[1];
+
+    //Set the token
+    req.token = token;
+
+    next();
   } else {
     // Forbidden
     res.sendStatus(403);
