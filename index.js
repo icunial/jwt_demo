@@ -12,6 +12,12 @@ app.get("/api", (req, res) => {
   });
 });
 
+app.post("/api/posts", (req, res) => {
+  res.json({
+    msg: `Post created...`,
+  });
+});
+
 // Initialized Server
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}...`);
