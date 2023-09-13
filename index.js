@@ -12,7 +12,7 @@ app.get("/api", (req, res) => {
   });
 });
 
-app.post("/api/posts", (req, res) => {
+app.post("/api/posts", verifyToken, (req, res) => {
   res.json({
     msg: `Post created...`,
   });
@@ -32,6 +32,18 @@ app.post("/api/login", (req, res) => {
     });
   });
 });
+
+// Verify Token function middleware
+function verifyToken(req, res, next) {
+  // Get auth header value
+  const bearerHeader = req.headers["authorization"];
+  // Check if bearer is undefined
+  if (typeof bearerHeader !== "undefined") {
+  } else {
+    // Forbidden
+    res.sendStatus(403);
+  }
+}
 
 // Initialized Server
 app.listen(PORT, () => {
